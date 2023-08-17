@@ -32,7 +32,4 @@ userRoutes.get("/perfil", traerPlaylists);
 // //mostrar canciones de playlist
 // userRoutes.get("/porcanciones", traerPlaylistsConCanciones);
 
-//borrar token
-
-
 module.exports = userRoutes;

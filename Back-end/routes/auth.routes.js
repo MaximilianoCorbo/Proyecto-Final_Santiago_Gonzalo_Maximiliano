@@ -9,7 +9,7 @@ const { logOut } = require("../controller/user.controller");
 authroutes.post("/login", login);
 //register
 authroutes.post("/register", check, mensaje, register);
-
+//borrar token
 authroutes.get("/logout", logOut);
 
 module.exports = authroutes;
