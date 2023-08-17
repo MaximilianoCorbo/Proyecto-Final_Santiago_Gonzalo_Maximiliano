@@ -7,11 +7,23 @@ const direccionLengths = { min: 10, max: 200 };
 
 module.exports = checkSchema({
   nombre: {
-    in: ["body"], //es to significa que el field 'nombre' se envia en el body de la request
+    in: ["body"],
     errorMessage: `Es requerido y el largo es entre ${nameLengths.min} y ${nameLengths.max} caracteres`,
     optional: false,
     isLength: {
       options: nameLengths,
+    },
+    custom: {
+      options: async (value) => {
+        const queryResponse = await knex("usuarios").where({
+          nombre: value,
+        });
+        const user = queryResponse[0];
+        if (user) {
+          throw new Error("Ya existe un usuario con ese nombre");
+        }
+        return true;
+      },
     },
   },
   // direccion: {
@@ -35,17 +47,17 @@ module.exports = checkSchema({
       "Es un campo requerido y deber terner el formato de un email (user@example.com)",
     isEmail: true,
     optional: false,
-    // custom: {
-    //   options: async (value) => {
-    //     const queryResponse = await knex("usuarios").where({
-    //       mail: value,
-    //     });
-    //     const user = queryResponse[0];
-    //     if (user) {
-    //       throw new Error("Ya existe un usuario con ese email");
-    //     }
-    //     return true;
-    //   },
-    // },
+    custom: {
+      options: async (value) => {
+        const queryResponse = await knex("usuarios").where({
+          mail: value,
+        });
+        const user = queryResponse[0];
+        if (user) {
+          throw new Error("Ya existe un usuario con ese email");
+        }
+        return true;
+      },
+    },
   },
 });

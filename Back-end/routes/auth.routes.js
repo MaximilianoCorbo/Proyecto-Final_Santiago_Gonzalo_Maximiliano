@@ -7,6 +7,6 @@ const { login, register } = require("../controller/auth.controller");
 //Login
 authroutes.post("/login", login);
 //register
-authroutes.post("/register", register);
-//  check, mensaje
+authroutes.post("/register", check, mensaje, register);
+
 module.exports = authroutes;
