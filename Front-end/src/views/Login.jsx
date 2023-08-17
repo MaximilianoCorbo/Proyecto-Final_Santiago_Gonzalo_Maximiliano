@@ -5,7 +5,7 @@ import arrowLeftImage from "../assets/left-icon-placeholder.svg";
 import Button from "../Components/Button";
 import eyeSvg from "../assets/eye.svg";
 import eyeOpenSvg from "../assets/eye_open.svg";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,11 +29,6 @@ const Login = () => {
 
   const isFormValid = !isUserNameEmpty && !isPasswordEmpty && isPasswordValid;
 
-  // const handleHome = () => {
-  //   // Lógica para el botón de inicio de sesión
-  //   navigate (`/home`)
-  // };  
-  
   const handleHome = () => {
     if (isFormValid) {
       const userData = {
@@ -41,19 +36,19 @@ const Login = () => {
         contrasenia: password,
       };
 
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
       fetch("http://localhost:3000/auth/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: myHeaders,
         body: JSON.stringify(userData),
+        credentials: "include",
       })
         .then((response) => {
           if (response.ok) {
-            // Authentication successful, navigate to home or perform any other action
             navigate("/home");
           } else {
-            // Authentication failed, handle the error here
             console.error("Authentication failed");
           }
         })
@@ -74,7 +69,7 @@ const Login = () => {
         </Link>
         <h2>Iniciar Sesión</h2>
       </div>
-      
+
       <label htmlFor="userName">Nombre de Usuario:</label>
       <input
         type="text"
@@ -83,12 +78,11 @@ const Login = () => {
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
       />
-      
 
       <label className="pswlabel" htmlFor="psw">
         Contraseña:
       </label>
-      <div className="password-input-container" >
+      <div className="password-input-container">
         <input
           type={showPassword ? "text" : "password"}
           id="psw"
@@ -97,12 +91,20 @@ const Login = () => {
           onChange={handlePasswordChange}
         />
         <span className="password-toggle" onClick={togglePasswordVisibility}>
-          {showPassword ? <img src={eyeOpenSvg} alt="Mostrar contraseña" /> : <img src={eyeSvg} alt="Ocultar contraseña" />}
+          {showPassword ? (
+            <img src={eyeOpenSvg} alt="Mostrar contraseña" />
+          ) : (
+            <img src={eyeSvg} alt="Ocultar contraseña" />
+          )}
         </span>
       </div>
-      
 
-      <Button className={`btn_continue ${isFormValid ? "valid-email" : ""}`} text="Continuar" disabled={!isFormValid} onClick={handleHome}/>
+      <Button
+        className={`btn_continue ${isFormValid ? "valid-email" : ""}`}
+        text="Continuar"
+        disabled={!isFormValid}
+        onClick={handleHome}
+      />
 
       <div className="btm-gradient"></div>
     </main>

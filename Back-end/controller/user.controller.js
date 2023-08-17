@@ -55,9 +55,7 @@ exports.crearContextual = async (req, res) => {
       .andWhere("clima_id", climaID);
 
     if (cancionesFiltradas.length === 0) {
-      return res
-        .status(400)
-        .json({ error: "No existe esa combinacion de canciones" });
+      return res.status(400).json({ error: "No existe esa combinacion de canciones" });
     }
 
     const playlist = await knex("playlists")
@@ -150,7 +148,7 @@ exports.traerPlaylists = async (req, res) => {
 exports.logOut = async (req, res) => {
   try {
     res.clearCookie("authToken");
-    res.redirect("/");
+    res.status(200).json({ message: "Logout successful" });
   } catch (error) {
     res.status(500).json({ error: "Error al cerrar sesión" });
   }

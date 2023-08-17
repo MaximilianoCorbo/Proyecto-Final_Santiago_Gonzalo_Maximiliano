@@ -9,8 +9,8 @@
 
 #profile-header {
     display: flex;
-    gap: 0;
-    padding: 0;
+    gap: 0;    
+    padding: 10% 0;
 }
 
 #profile-header h1 {
@@ -82,6 +82,10 @@ header button {
     flex-direction: row;
     justify-content: center;
     gap: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+    padding-bottom: 80px;
 }
 
 .playlistCard {
@@ -89,20 +93,30 @@ header button {
     margin-top: 23px;
 }
 
-.playlistCard .ssinger {
+.playlistCard .sssinger {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-content: center;
     height: 152px;
 }
+.sssinger{
+    height: 224px;
+    width: 224px;
+    border-radius: 0px 50px;
+    z-index: 1;
+    overflow: hidden;
+    gap: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
 
-.ssinger2 {
+.sssinger2 {
     height: 76px;
     width: 76px;
 }
 
-.ssinger3 {
+.sssinger3 {
     height: 76px;
     width: 76px;
     overflow: hidden;
@@ -128,5 +142,5 @@ letter-spacing: 0.5px;
 }
 
 .bottom-bar {
-    background: transparent;
+    background: white;
 }

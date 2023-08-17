@@ -14,11 +14,3 @@
     cursor: pointer;
 }
 
-.playlist-button {
-    background: var(--medios-tonos-gris-1, #E4E6E8);
-    color: white;
-    border: 0;
-    border-radius: 0px 16px;
-    position: absolute;
-    bottom: 20%;
-}

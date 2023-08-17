@@ -33,6 +33,6 @@ userRoutes.get("/perfil", traerPlaylists);
 // userRoutes.get("/porcanciones", traerPlaylistsConCanciones);
 
 //borrar token
-userRoutes.get("/logout", logOut);
+
 
 module.exports = userRoutes;

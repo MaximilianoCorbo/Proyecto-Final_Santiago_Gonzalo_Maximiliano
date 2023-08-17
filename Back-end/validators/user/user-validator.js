@@ -28,7 +28,7 @@ module.exports = checkSchema({
   },
   // direccion: {
   //   in: ["body"],
-  //   errorMessage: `El largo es entre  ${direccionLengths.min} y ${direccionLengths.max} caracteres`,
+  //   errorMessage: El largo es entre  ${direccionLengths.min} y ${direccionLengths.max} caracteres,
   //   optional: true,
   //   isLength: {
   //     options: direccionLengths,
