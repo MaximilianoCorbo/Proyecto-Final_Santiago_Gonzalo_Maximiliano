@@ -83,6 +83,7 @@ const ContextualMusic = () => {
     } catch (error) {
       console.log("Error:", error);
     }
+    navigate (`/user_profile`)
   };
 
   return (

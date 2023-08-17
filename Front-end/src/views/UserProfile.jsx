@@ -60,7 +60,7 @@ const UserProfile = () => {
       <section id="playlistContainer">
       {profileData.playlists.map((profile, index) => (
           <article className="playlistCard" key={index}>
-            <div className="sssinger">
+            <div className="sssinger" >
               <img src={singer} className="sssinger2" />
               <img src={singer2} className="sssinger2" />
               <img src={singer3} className="sssinger3" />

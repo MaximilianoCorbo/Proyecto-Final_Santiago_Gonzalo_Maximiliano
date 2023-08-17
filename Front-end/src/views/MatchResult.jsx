@@ -17,6 +17,7 @@ const MatchResult = () => {
     // Lógica para el botón de inicio de sesión
     navigate(`/home`);
   };
+
   return (
     <main className="Card">
       <div className="header">
@@ -41,12 +42,12 @@ const MatchResult = () => {
         -icon- -verified- -share- -duration- -historial-
       </div>
       <div>-create copy- -Random/inline song- -play-</div>
-      <div className="Songs">
+      {<div className="Songs">
         mapeo de las canciones -hamburger-<br></br>
         mapeo de las canciones -hamburger-<br></br>
         mapeo de las canciones -hamburger-<br></br>
         mapeo de las canciones -hamburger-<br></br>
-      </div>
+      </div>}
       <BottomBar />
     </main>
   );
