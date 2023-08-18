@@ -49,7 +49,7 @@ exports.crearContextual = async (req, res) => {
 
     const cancionesFiltradas = await knex("canciones")
       .select("id")
-      .whereIn("genero_id", generoID)
+      .where("genero_id", generoID)
       .andWhere("estadodeanimo_id", estadoID)
       .andWhere("ocasion_id", ocasionID)
       .andWhere("clima_id", climaID);
@@ -83,16 +83,22 @@ exports.crearCupido = async (req, res) => {
     const { nombreLista, artistaID } = req.body;
     const usuarioID = req.usuario.id;
 
+    const cancionesFiltradas = await knex("canciones")
+      .select("id")
+      .whereIn("artista_id", artistaID);
+
+    if (cancionesFiltradas.length === 0) {
+      return res
+        .status(400)
+        .json({ error: "No existe esa combinacion de canciones" });
+    }
+
     const playlist = await knex("playlists")
       .insert({
         nombre: nombreLista,
         usuario_id: usuarioID,
       })
       .returning("id");
-
-    const cancionesFiltradas = await knex("canciones")
-      .select("id")
-      .whereIn("artista_id", artistaID);
 
     const relacionesCanciones = cancionesFiltradas.map((cancion) => ({
       playlist_id: playlist[0].id,
@@ -119,5 +125,31 @@ exports.traerPlaylists = async (req, res) => {
     res.status(200).json({ playlists });
   } catch (error) {
     res.status(500).json({ error: "Hubo un error al obtener las playlists." });
+  }
+};
+
+// exports.traerPlaylistsConCanciones = async (req, res) => {
+//   try {
+//     const usuarioID = req.usuario.id;
+
+//     const playlistsConCanciones = await knex("playlist_canciones as pc")
+//       .select("pc.cancion_id", "pc.playlist_id", "p.nombre as nombre_playlist")
+//       .leftJoin("playlists as p", "pc.playlist_id", "p.id")
+//       .where("p.usuario_id", usuarioID);
+
+//     res.status(200).json({ playlistsConCanciones });
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ error: "Hubo un error al obtener las playlists con canciones." });
+//   }
+// };
+
+exports.logOut = async (req, res) => {
+  try {
+    res.clearCookie("authToken");
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    res.status(500).json({ error: "Error al cerrar sesión" });
   }
 };

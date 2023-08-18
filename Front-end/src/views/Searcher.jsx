@@ -64,7 +64,6 @@ const Searcher = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const header = newHeader;
         console.log(document.cookie)
         const response = await fetch("http://localhost:3000/user/canciones", {credentials: 'include'});
         const data = await response.json();

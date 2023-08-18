@@ -1,20 +1,16 @@
 import React from "react";
-// import { useEffect, useState } from "react";
 import "../styles/MatchResult.css";
 import arrow from "../assets/left-icon-placeholder.svg";
 import singer from "../assets/artist/1.png";
 import singer2 from "../assets/artist/2.png";
 import singer3 from "../assets/artist/3.png";
 import singer4 from "../assets/artist/4.png";
-
-// import Home from "./Home";
 import BottomBar from "../components/BottomBar";
 import { useNavigate } from "react-router";
 
 const MatchResult = () => {
   const navigate = useNavigate();
   const handleHome = () => {
-    // Lógica para el botón de inicio de sesión
     navigate(`/home`);
   };
 

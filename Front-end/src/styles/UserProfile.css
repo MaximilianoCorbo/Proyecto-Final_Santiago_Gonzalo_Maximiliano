@@ -9,8 +9,8 @@
 
 #profile-header {
     display: flex;
-    gap: 0;
-    padding: 0;
+    gap: 0;    
+    padding: 10% 0;
 }
 
 #profile-header h1 {
