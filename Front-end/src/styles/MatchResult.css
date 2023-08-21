@@ -25,3 +25,8 @@
   width: 112px;
   overflow: hidden;
 }
+
+.actions-bar{
+  display: flex;
+  gap: 10px;
+}
